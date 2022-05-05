@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequestMapping
 public class FeedbackController {
@@ -23,5 +26,14 @@ public class FeedbackController {
         Feedback feedback = dto.map();
         FeedbackDto createdFeedback = FeedbackDto.map(feedbackService.create(feedback, id));
         return new ResponseEntity<>(createdFeedback, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/feedback")
+    public ResponseEntity<List<FeedbackDto>> getFeedbacksByProductId(
+            @RequestParam(name = "productId") Long productId) {
+        List<Feedback> feedbacks = feedbackService.getFeedbacksByProductId(productId);
+        return new ResponseEntity<>(feedbacks.stream()
+                .map(FeedbackDto::map)
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 }
