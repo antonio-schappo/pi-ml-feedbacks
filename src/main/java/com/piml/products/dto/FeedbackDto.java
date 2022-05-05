@@ -14,6 +14,7 @@ import lombok.*;
 public class FeedbackDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long productId;
     private Long buyerId;
     private Long starRating;
