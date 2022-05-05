@@ -14,6 +14,7 @@ import lombok.*;
 public class FeedbackDto {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long productId;
     private Long buyerId;
     private Long starRating;
@@ -25,5 +26,14 @@ public class FeedbackDto {
                 .starRating(this.starRating)
                 .comment(this.comment)
                 .build();
+    }
+
+    public static FeedbackDto map(Feedback feedback) {
+        return FeedbackDto.builder()
+                .id(feedback.getId())
+                .productId(feedback.getProduct().getId())
+                .buyerId(feedback.getBuyerId())
+                .comment(feedback.getComment())
+                .starRating(feedback.getStarRating()).build();
     }
 }
