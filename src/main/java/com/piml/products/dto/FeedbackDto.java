@@ -26,4 +26,13 @@ public class FeedbackDto {
                 .comment(this.comment)
                 .build();
     }
+
+    public static FeedbackDto map(Feedback feedback) {
+        return FeedbackDto.builder()
+                .id(feedback.getId())
+                .productId(feedback.getProduct().getId())
+                .buyerId(feedback.getBuyerId())
+                .comment(feedback.getComment())
+                .starRating(feedback.getStarRating()).build();
+    }
 }

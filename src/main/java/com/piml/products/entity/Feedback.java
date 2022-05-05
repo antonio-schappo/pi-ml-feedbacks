@@ -1,5 +1,6 @@
 package com.piml.products.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,7 +19,8 @@ public class Feedback {
     @Column(name= "feedback_id")
     private Long id;
     @ManyToOne()
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", nullable = false)
+    @JsonIgnore
     private Product product;
     private Long buyerId;
     private LocalDateTime datePosted;

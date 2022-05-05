@@ -12,8 +12,8 @@ import javax.persistence.EntityNotFoundException;
 @ControllerAdvice(annotations = RestController.class)
 public class MyExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
-    protected ResponseEntity<?> handleProductException() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+    protected ResponseEntity<?> handleProductException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
     @ExceptionHandler(SellerAlreadyExistsException.class)
     protected ResponseEntity<?> sellerAlreadyExistsException() {
