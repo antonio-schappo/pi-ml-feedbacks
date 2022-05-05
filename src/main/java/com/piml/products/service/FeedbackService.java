@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,4 +41,16 @@ public class FeedbackService {
         return feedbackList.get();
     }
 
+    public List<Feedback> getFeedbacksByBuyerId(Long buyerId) {
+        Optional<List<Feedback>> feedbackList = this.feedbackRepository.findAllByBuyerId(buyerId);
+        if(!feedbackList.isPresent() || feedbackList.get().size() == 0) {
+            throw new EntityNotFoundException("Buyer with id ".concat(String.valueOf(buyerId))
+                    .concat(" either does not exist or has not written any feedback yet."));
+        }
+        return feedbackList.get();
+    }
+
+    public Feedback getFeedbackById(Long aLong) { return this.feedbackRepository.getById(aLong); }
+
+    public Collection<? extends Feedback> getAllFeedbacks() { return this.feedbackRepository.findAll(); }
 }
