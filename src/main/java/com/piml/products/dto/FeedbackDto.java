@@ -1,6 +1,8 @@
 package com.piml.products.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.piml.products.entity.Feedback;
+import com.piml.products.interfaces.StarRatingENUM;
 import lombok.*;
 
 @Builder
@@ -16,4 +18,12 @@ public class FeedbackDto {
     private Long buyerId;
     private Long starRating;
     private String comment;
+
+    public Feedback map() {
+        return Feedback.builder()
+                .buyerId(this.buyerId)
+                .starRating(this.starRating)
+                .comment(this.comment)
+                .build();
+    }
 }
