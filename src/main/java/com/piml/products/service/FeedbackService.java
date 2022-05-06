@@ -37,7 +37,8 @@ public class FeedbackService {
     public List<Feedback> getFeedbacksByProductId(Long productId) {
         Optional<List<Feedback>> feedbackList = this.feedbackRepository.findAllByProductId(productId);
         if(!feedbackList.isPresent() || feedbackList.get().size() == 0) {
-            throw new EntityNotFoundException("Product with id ".concat(String.valueOf(productId)).concat(" was not found"));
+            throw new EntityNotFoundException("Product with id ".concat(String.valueOf(productId))
+                    .concat(" either does not exist or no feedbacks have been posted for it."));
         }
         return feedbackList.get();
     }
