@@ -1,0 +1,1611 @@
+{
+	"info": {
+		"_postman_id": "5d6c0025-66fa-49f7-8d32-87416a7472d2",
+		"name": "Feedback Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Bola\",\n    \"description\": \"teste\",\n    \"minimumTemperature\": 55.5,\n    \"sellerId\": 123,\n    \"size\": 14,\n    \"price\": 150.2,\n    \"category\": \"FF\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/fresh-products",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"fresh-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localfeedback}}/fresh-products/v1/{{productId}}",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"fresh-products",
+								"v1",
+								"{{productId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "products",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "products",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{localproducts}}/fresh-products/v1?products=1,2",
+							"host": [
+								"{{localproducts}}"
+							],
+							"path": [
+								"fresh-products",
+								"v1"
+							],
+							"query": [
+								{
+									"key": "products",
+									"value": "1,2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Default",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://cba39d3e-8cac-4910-b695-1b4ae386476d.mock.pstmn.io/fresh-products/v1?products=1,2",
+									"protocol": "https",
+									"host": [
+										"cba39d3e-8cac-4910-b695-1b4ae386476d",
+										"mock",
+										"pstmn",
+										"io"
+									],
+									"path": [
+										"fresh-products",
+										"v1"
+									],
+									"query": [
+										{
+											"key": "products",
+											"value": "1,2"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"warehouseCode\": 9,\n        \"sectionCode\": 11,\n        \"productId\": 1,\n        \"batchStock\": [\n            {\n                \"batchNumber\": 140,\n                \"dueDate\": \"2023-12-30\",\n                \"currentQuantity\": 6200\n            }\n        ]\n    },\n    {\n        \"warehouseCode\": 8,\n        \"sectionCode\": 10,\n        \"productId\": 1,\n        \"batchStock\": [\n            {\n                \"batchNumber\": 123,\n                \"dueDate\": \"2023-12-02\",\n                \"currentQuantity\": 100\n            }\n        ]\n    },\n    {\n        \"warehouseCode\": 9,\n        \"sectionCode\": 12,\n        \"productId\": 1,\n        \"batchStock\": [\n            {\n                \"batchNumber\": 5,\n                \"dueDate\": \"2023-12-05\",\n                \"currentQuantity\": 1300\n            },\n            {\n                \"batchNumber\": 27,\n                \"dueDate\": \"2023-12-02\",\n                \"currentQuantity\": 40\n            },\n            {\n                \"batchNumber\": 12,\n                \"dueDate\": \"2023-12-01\",\n                \"currentQuantity\": 3600\n            }\n        ]\n    },\n    {\n        \"warehouseCode\": 9,\n        \"sectionCode\": 11,\n        \"productId\": 2,\n        \"batchStock\": [\n            {\n                \"batchNumber\": 123,\n                \"dueDate\": \"2023-12-02\",\n                \"currentQuantity\": 100\n            }\n        ]\n    },\n    {\n        \"warehouseCode\": 9,\n        \"sectionCode\": 12,\n        \"productId\": 2,\n        \"batchStock\": [\n            {\n                \"batchNumber\": 123,\n                \"dueDate\": \"2023-12-02\",\n                \"currentQuantity\": 100\n            },\n            {\n                \"batchNumber\": 123,\n                \"dueDate\": \"2023-12-02\",\n                \"currentQuantity\": 100\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get by category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{localproducts}}/product/v1/list?category=RF",
+							"host": [
+								"{{localproducts}}"
+							],
+							"path": [
+								"product",
+								"v1",
+								"list"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "RF"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feedbacks",
+			"item": [
+				{
+					"name": "Post Feedback",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyerId\": 1,\n    \"starRating\": 6,\n    \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/feedback/?productId=2",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"feedback",
+								""
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Post Feedback Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"buyerId\": 1,\n    \"starRating\": 1,\n    \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/?productId=1",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										""
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 01:53:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"productId\": 1,\n    \"buyerId\": 1,\n    \"starRating\": 1,\n    \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n}"
+						},
+						{
+							"name": "Post Feedback Fail - Product not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"buyerId\": 1,\n    \"starRating\": 6,\n    \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/?productId=2",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										""
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "31"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:00:00 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product with id 2 was not found"
+						}
+					]
+				},
+				{
+					"name": "Get Feedbacks by ProductId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/feedbacks/?productId=2",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"feedbacks",
+								""
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedbacks/?productId=1",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedbacks",
+										""
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"productId\": 1,\n        \"buyerId\": 1,\n        \"starRating\": 1,\n        \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n    }\n]"
+						},
+						{
+							"name": "Success - More than one feedback",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedbacks/?productId=1",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedbacks",
+										""
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"productId\": 1,\n        \"buyerId\": 1,\n        \"starRating\": 1,\n        \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n    },\n    {\n        \"id\": 2,\n        \"productId\": 1,\n        \"buyerId\": 1,\n        \"starRating\": 5,\n        \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n    }\n]"
+						},
+						{
+							"name": "Failure - Product not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedbacks/?productId=2",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedbacks",
+										""
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:02:30 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product with id 2 either does not exist or no feedbacks have been posted for it."
+						}
+					]
+				},
+				{
+					"name": "Get Star Rating Average by Product Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/feedback/stars?productId=1",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"feedback",
+								"stars"
+							],
+							"query": [
+								{
+									"key": "productId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Failure - Product Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/stars?productId=2",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										"stars"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "80"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:04:03 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Product with id 2 either does not exist or no feedbacks have been posted for it."
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/stars?productId=1",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										"stars"
+									],
+									"query": [
+										{
+											"key": "productId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:10:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"starRatingAverage\": 3\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Feedbacks by BuyerId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/feedbacks/?buyerId=1",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"feedbacks",
+								""
+							],
+							"query": [
+								{
+									"key": "buyerId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedbacks/?buyerId=1",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedbacks",
+										""
+									],
+									"query": [
+										{
+											"key": "buyerId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:11:19 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"productId\": 1,\n        \"buyerId\": 1,\n        \"starRating\": 5,\n        \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n    },\n    {\n        \"id\": 2,\n        \"productId\": 1,\n        \"buyerId\": 1,\n        \"starRating\": 1,\n        \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n    }\n]"
+						},
+						{
+							"name": "Failure - No buyerId found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedbacks/?buyerId=2",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedbacks",
+										""
+									],
+									"query": [
+										{
+											"key": "buyerId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:11:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Buyer with id 2 either does not exist or has not written any feedback yet."
+						}
+					]
+				},
+				{
+					"name": "Get All feedbacks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/feedbacks/",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"feedbacks",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All feedbacks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedbacks/",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedbacks",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:12:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"productId\": 1,\n        \"buyerId\": 1,\n        \"starRating\": 5,\n        \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n    },\n    {\n        \"id\": 2,\n        \"productId\": 1,\n        \"buyerId\": 1,\n        \"starRating\": 1,\n        \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n    },\n    {\n        \"id\": 3,\n        \"productId\": 1,\n        \"buyerId\": 2,\n        \"starRating\": 3,\n        \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get Feedback by Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/feedback/?feedbackId=5",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"feedback",
+								""
+							],
+							"query": [
+								{
+									"key": "feedbackId",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/?feedbackId=3",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										""
+									],
+									"query": [
+										{
+											"key": "feedbackId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:12:45 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 3,\n    \"productId\": 1,\n    \"buyerId\": 2,\n    \"starRating\": 3,\n    \"comment\": \"This toy should be more playful. 3 out of 5 stars\"\n}"
+						},
+						{
+							"name": "Failure",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/?feedbackId=5",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										""
+									],
+									"query": [
+										{
+											"key": "feedbackId",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:22:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "No records of feedback with id 5 found."
+						}
+					]
+				},
+				{
+					"name": "Update Feedback",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"buyerId\": 2,\n    \"starRating\": 4,\n    \"comment\": \"After some time with it, I like it more. 4 stars!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/feedback/?feedbackId=3",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"feedback",
+								""
+							],
+							"query": [
+								{
+									"key": "feedbackId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Failure - Buyer with different id not authorized to update",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"buyerId\": 1,\n    \"starRating\": 4,\n    \"comment\": \"After some time with it, I like it more. 4 stars!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/?feedbackId=1",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										""
+									],
+									"query": [
+										{
+											"key": "feedbackId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:23:14 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "The buyer with the buyerId of 1 is not authorized to modify this feedback!"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"buyerId\": 2,\n    \"starRating\": 4,\n    \"comment\": \"After some time with it, I like it more. 4 stars!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/?feedbackId=1",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										""
+									],
+									"query": [
+										{
+											"key": "feedbackId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:24:29 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"productId\": 1,\n    \"buyerId\": 2,\n    \"starRating\": 4,\n    \"comment\": \"After some time with it, I like it more. 4 stars!\"\n}"
+						},
+						{
+							"name": "Failure - Feedback not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"buyerId\": 2,\n    \"starRating\": 4,\n    \"comment\": \"After some time with it, I like it more. 4 stars!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/?feedbackId=3",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										""
+									],
+									"query": [
+										{
+											"key": "feedbackId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:25:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "No records of feedback with id 3 found."
+						}
+					]
+				},
+				{
+					"name": "Delete Feedback by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{localfeedback}}/feedback/4",
+							"host": [
+								"{{localfeedback}}"
+							],
+							"path": [
+								"feedback",
+								"4"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/{{feedbackId}}",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										"{{feedbackId}}"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:25:49 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "The feedback with the feedbackId of 1 was successfully deleted."
+						},
+						{
+							"name": "Failure - Feedback not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{localfeedback}}/feedback/{{feedbackId}}",
+									"host": [
+										"{{localfeedback}}"
+									],
+									"path": [
+										"feedback",
+										"{{feedbackId}}"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "39"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 06 May 2022 06:26:21 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "No records of feedback with id 4 found."
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "localfeedback",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "feedbackId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "productId",
+			"value": "1"
+		}
+	]
+}

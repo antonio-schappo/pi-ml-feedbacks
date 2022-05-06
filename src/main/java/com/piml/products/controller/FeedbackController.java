@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,7 +37,7 @@ public class FeedbackController {
     @ApiOperation(value = "Register new Feedback to a product")
     @PostMapping("/feedback")
     public ResponseEntity<FeedbackDto> createFeedback(@RequestParam(name = "productId") Long id,
-                                                      @RequestBody FeedbackDto dto) {
+                                                      @Valid @RequestBody FeedbackDto dto) {
         Feedback feedback = dto.map();
         FeedbackDto createdFeedback = FeedbackDto.map(feedbackService.create(feedback, id));
         return new ResponseEntity<>(createdFeedback, HttpStatus.CREATED);
@@ -99,7 +100,7 @@ public class FeedbackController {
     @ApiOperation(value = "Update a feedback information of a specific feedback")
     @PutMapping("/feedback")
     public ResponseEntity<FeedbackDto> updateFeedback(@RequestParam(name = "feedbackId") Long feedbackId,
-                                                      @RequestBody UpdateFeedbackDto dto) {
+                                                      @Valid @RequestBody UpdateFeedbackDto dto) {
         Feedback feedbackToUpdate = feedbackService.getFeedbackById(feedbackId);
         Feedback updatedFeedback = feedbackService.updateFeedback(dto.map(), feedbackToUpdate);
         return new ResponseEntity<>(FeedbackDto.map(updatedFeedback),HttpStatus.CREATED);

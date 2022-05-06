@@ -77,7 +77,14 @@ public class FeedbackService {
      * @return a specific feedback
      */
 
-    public Feedback getFeedbackById(Long aLong) { return this.feedbackRepository.getById(aLong); }
+    public Feedback getFeedbackById(Long aLong) {
+        Optional<Feedback> feedback = this.feedbackRepository.findById(aLong);
+        if(!feedback.isPresent()){
+            throw new EntityNotFoundException("No records of feedback with id "
+                    .concat(String.valueOf(aLong)).concat(" found."));
+        }
+        return feedback.get();
+    }
 
     /**
      * Search all feedbacks in the repository
