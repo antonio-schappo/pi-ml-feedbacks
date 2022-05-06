@@ -2,7 +2,7 @@ package com.piml.products.service;
 
 import com.piml.products.entity.Feedback;
 import com.piml.products.entity.Product;
-import com.piml.products.exception.handler.UnauthorizedUserException;
+import com.piml.products.exception.UnauthorizedUserException;
 import com.piml.products.repository.FeedbackRepository;
 import com.piml.products.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -65,5 +65,14 @@ public class FeedbackService {
         feedbackToUpdate.setComment(newInfo.getComment());
         feedbackToUpdate.setStarRating(newInfo.getStarRating());
         return feedbackRepository.save(feedbackToUpdate);
+    }
+
+    public void deleteFeedback(Long feedbackId) {
+        try{
+            feedbackRepository.deleteById(feedbackId);
+        } catch (RuntimeException Ex) {
+            throw new EntityNotFoundException("No records of feedback with id "
+            .concat(String.valueOf(feedbackId)).concat(" found."));
+        }
     }
 }

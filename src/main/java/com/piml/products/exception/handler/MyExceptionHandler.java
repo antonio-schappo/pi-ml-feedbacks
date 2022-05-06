@@ -1,6 +1,7 @@
 package com.piml.products.exception.handler;
 
 import com.piml.products.exception.SellerAlreadyExistsException;
+import com.piml.products.exception.UnauthorizedUserException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
