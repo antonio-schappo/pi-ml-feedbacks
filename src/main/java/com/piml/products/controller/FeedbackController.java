@@ -63,4 +63,12 @@ public class FeedbackController {
         Feedback updatedFeedback = feedbackService.updateFeedback(dto.map(), feedbackToUpdate);
         return new ResponseEntity<>(FeedbackDto.map(updatedFeedback),HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/feedback/{feedbackId}")
+    public ResponseEntity<String> deleteFeedback(@PathVariable Long feedbackId) {
+        feedbackService.deleteFeedback(feedbackId);
+        return ResponseEntity.ok("The feedback with the feedbackId of "
+                .concat(String.valueOf(feedbackId))
+        .concat(" was successfully deleted."));
+    }
 }
