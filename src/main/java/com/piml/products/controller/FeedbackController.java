@@ -1,6 +1,7 @@
 package com.piml.products.controller;
 
 import com.piml.products.dto.FeedbackDto;
+import com.piml.products.dto.UpdateFeedbackDto;
 import com.piml.products.entity.Feedback;
 import com.piml.products.service.FeedbackService;
 import org.springframework.http.HttpStatus;
@@ -46,5 +47,13 @@ public class FeedbackController {
     public ResponseEntity<FeedbackDto> getFeedbackById(@RequestParam(name = "feedbackId") Long feedbackId) {
         Feedback feedback = feedbackService.getFeedbackById(feedbackId);
         return new ResponseEntity<>(FeedbackDto.map(feedback), HttpStatus.OK);
+    }
+
+    @PutMapping("/feedback")
+    public ResponseEntity<FeedbackDto> updateFeedback(@RequestParam(name = "feedbackId") Long feedbackId,
+                                                      @RequestBody UpdateFeedbackDto dto) {
+        Feedback feedbackToUpdate = feedbackService.getFeedbackById(feedbackId);
+        Feedback updatedFeedback = feedbackService.updateFeedback(dto.map(), feedbackToUpdate);
+        return new ResponseEntity<>(FeedbackDto.map(updatedFeedback),HttpStatus.CREATED);
     }
 }

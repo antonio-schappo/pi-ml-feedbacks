@@ -19,5 +19,9 @@ public class MyExceptionHandler {
     protected ResponseEntity<?> sellerAlreadyExistsException() {
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Seller already registered");
     }
+    @ExceptionHandler(UnauthorizedUserException.class)
+    protected ResponseEntity<?> handleUnauthorizedUserException(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
 }
 

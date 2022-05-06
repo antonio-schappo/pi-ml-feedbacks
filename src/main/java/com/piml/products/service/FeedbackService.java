@@ -2,6 +2,7 @@ package com.piml.products.service;
 
 import com.piml.products.entity.Feedback;
 import com.piml.products.entity.Product;
+import com.piml.products.exception.handler.UnauthorizedUserException;
 import com.piml.products.repository.FeedbackRepository;
 import com.piml.products.repository.ProductRepository;
 import org.springframework.stereotype.Service;
@@ -53,4 +54,15 @@ public class FeedbackService {
     public Feedback getFeedbackById(Long aLong) { return this.feedbackRepository.getById(aLong); }
 
     public Collection<? extends Feedback> getAllFeedbacks() { return this.feedbackRepository.findAll(); }
+
+    public Feedback updateFeedback(Feedback newInfo, Feedback feedbackToUpdate) {
+        if (!newInfo.getBuyerId().equals(feedbackToUpdate.getBuyerId())) {
+            throw new UnauthorizedUserException("The buyer with the buyerId of "
+                    .concat(String.valueOf(newInfo.getBuyerId()))
+                    .concat(" is not authorized to modify this feedback!"));
+        }
+        feedbackToUpdate.setComment(newInfo.getComment());
+        feedbackToUpdate.setStarRating(newInfo.getStarRating());
+        return feedbackRepository.save(feedbackToUpdate);
+    }
 }
